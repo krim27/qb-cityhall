@@ -15,15 +15,18 @@ body {
     position: relative;
     background-position: center center;
     backface-visibility: hidden;
-    width: 100vh;
+    width: 100vh; /* Width adjusted to viewport width */
     height: 70vh;
     margin: 0 auto;
     top: 15vh;
     background-size: cover;
-    background-color: rgba(23, 23, 23, 80%);
-    border-radius: 4vh;
-    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.226);
+    background: radial-gradient(circle, rgba(36,135,38,1) 0%, rgba(0,0,0,1) 100%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Increased shadow for more depth */
+    border: 1px solid #707070; /* Thick dark border for tablet-like frame */
 }
+
+
 
 .cityhall-header {
     position: relative;
@@ -38,7 +41,6 @@ body {
     left: 1.5vh;
     border-radius: 2vh;
     height: 10vh;
-    background: #dc143c;
 }
 
 .cityhall-option-blocks {
@@ -62,35 +64,6 @@ body {
     background: rgba(37, 37, 37, 0.418);
 }
 
-.cityhall-job-page {
-    display: none;
-    position: relative;
-    height: 40vh;
-    width: 80vh;
-    margin: 0 auto;
-    top: 10vh;
-    border-radius: 1vh;
-    overflow-y: auto;
-    background: rgba(37, 37, 37, 0.418);
-}
-
-.cityhall-job-page::-webkit-scrollbar-track {
-    background: #171717; /* color of the tracking area */
-}
-.cityhall-job-page::-webkit-scrollbar-thumb {
-    background-color: #dc143c; /* color of the scroll thumb */
-}
-.cityhall-job-page::-webkit-scrollbar {
-    width: 2vh;
-}
-.cityhall-job-page::-webkit-scrollbar-track {
-    border-radius: 20px;
-    border: 3px solid #171717;
-}
-.cityhall-job-page::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    border: 3px solid #171717;
-}
 .cityhall-option-block {
     position: relative;
     width: 30vh;
@@ -107,14 +80,13 @@ body {
 }
 
 .cityhall-option-block:hover {
-    border-bottom: 9px solid #dc143c;
-    opacity: 0.9;
+    opacity: 0.9; 
 }
 
 .cityhall-option-block > i {
     font-size: 16vh;
     line-height: 21vh;
-    color: #dc143c;
+    color: #ffffff;
 }
 
 .cityhall-option-block > p {
@@ -136,19 +108,19 @@ body {
 .identity-page-block {
     width: 100%;
     height: 15%;
-    background: #2873a7;
+    background: rgba(36, 135, 38, 1);
     transition: all 0.1s ease-in-out;
     border-radius: 0.5vh;
     /* border-bottom: 2px solid rgba(255, 255, 255, 0); */
 }
 
 .identity-page-block:hover {
-    background: #ededed;
+    background: rgba(36, 135, 38, 0.8);
     transition: ease-in 0.3s;
 }
 
 .identity-page-block > p:hover {
-    color: #2873a7;
+    color: rgba(36, 135, 38, 1);
     transition: ease-in 0.3s;
 }
 
@@ -206,75 +178,6 @@ body {
     font-weight: 400;
     line-height: 2vh;
     letter-spacing: 0.05vh;
-}
-
-.job-page-blocks {
-    position: relative;
-    padding: 1vh;
-    padding-right: 2vh;
-    display: grid;
-    grid-template-columns: 23vh 23vh;
-    column-gap: 2vh;
-    row-gap: 2vh;
-}
-
-.job-page-block {
-    width: 100%;
-    background: #2873a7;
-    border-radius: 0.5vh;
-    transition: all 0.1s ease-in-out;
-    border-bottom: 2px solid rgba(255, 255, 255, 0);
-}
-
-.job-page-block:hover {
-    background: #ededed;
-}
-
-.job-page-block > p:hover {
-    color: #2873a7;
-}
-
-.job-page-block > p {
-    position: relative;
-    text-align: center;
-    line-height: 2.5vh;
-    font-family: "Poppins", sans-serif;
-    text-transform: uppercase;
-    font-weight: 400;
-    letter-spacing: 0.1vh;
-    color: #ededed;
-    font-size: 1.6vh;
-}
-
-.apply-job-button {
-    display: none;
-    position: absolute;
-    top: 6vh;
-    right: 0;
-    margin: 1vh;
-    width: 20vh;
-    height: 5vh;
-    background: #28a745;
-    border-radius: 0.5vh;
-}
-
-.apply-job-button:hover {
-    background: #28a745;
-}
-
-.apply-job-button > p {
-    color: #ededed;
-    text-align: center;
-    font-family: sans-serif;
-    text-transform: uppercase;
-    font-size: 2vh;
-    font-weight: 400;
-    line-height: 1vh;
-    letter-spacing: 0.05vh;
-}
-
-.job-selected {
-    border-left: 0.5vh solid #ededed;
 }
 
 .back-to-main {

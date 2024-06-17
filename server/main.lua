@@ -19,23 +19,7 @@ exports('AddCityJob', AddCityJob)
 local function giveStarterItems()
     local Player = QBCore.Functions.GetPlayer(source)
     if not Player then return end
-    for _, v in pairs(QBCore.Shared.StarterItems) do
-        local info = {}
-        if v.item == 'id_card' then
-            info.citizenid = Player.PlayerData.citizenid
-            info.firstname = Player.PlayerData.charinfo.firstname
-            info.lastname = Player.PlayerData.charinfo.lastname
-            info.birthdate = Player.PlayerData.charinfo.birthdate
-            info.gender = Player.PlayerData.charinfo.gender
-            info.nationality = Player.PlayerData.charinfo.nationality
-        elseif v.item == 'driver_license' then
-            info.firstname = Player.PlayerData.charinfo.firstname
-            info.lastname = Player.PlayerData.charinfo.lastname
-            info.birthdate = Player.PlayerData.charinfo.birthdate
-            info.type = 'Class C Driver License'
-        end
-        exports['qb-inventory']:AddItem(source, v.item, 1, false, info, 'qb-cityhall:giveStarterItems')
-    end
+    exports['um-idcard']:CreateMetaLicense(source, {'id_card'})
 end
 
 -- Callbacks
@@ -51,29 +35,25 @@ RegisterNetEvent('qb-cityhall:server:requestId', function(item, hall)
     local Player = QBCore.Functions.GetPlayer(src)
     if not Player then return end
     local itemInfo = Config.Cityhalls[hall].licenses[item]
-    if not Player.Functions.RemoveMoney('cash', itemInfo.cost, 'cityhall id') then return TriggerClientEvent('QBCore:Notify', src, ('You don\'t have enough money on you, you need %s cash'):format(itemInfo.cost), 'error') end
-    local info = {}
-    if item == 'id_card' then
-        info.citizenid = Player.PlayerData.citizenid
-        info.firstname = Player.PlayerData.charinfo.firstname
-        info.lastname = Player.PlayerData.charinfo.lastname
-        info.birthdate = Player.PlayerData.charinfo.birthdate
-        info.gender = Player.PlayerData.charinfo.gender
-        info.nationality = Player.PlayerData.charinfo.nationality
-    elseif item == 'driver_license' then
-        info.firstname = Player.PlayerData.charinfo.firstname
-        info.lastname = Player.PlayerData.charinfo.lastname
-        info.birthdate = Player.PlayerData.charinfo.birthdate
-        info.type = 'Class C Driver License'
-    elseif item == 'weaponlicense' then
-        info.firstname = Player.PlayerData.charinfo.firstname
-        info.lastname = Player.PlayerData.charinfo.lastname
-        info.birthdate = Player.PlayerData.charinfo.birthdate
+    if not Player.Functions.RemoveMoney("cash", itemInfo.cost) then return TriggerClientEvent('QBCore:Notify', src, ('You don\'t have enough money on you, you need %s cash'):format(itemInfo.cost), 'error') end
+    if item == "id_card" then
+        exports['um-idcard']:CreateMetaLicense(src, 'id_card')
+    elseif item == "driver_license" then
+        exports['um-idcard']:CreateMetaLicense(src, 'driver_license')
+    elseif item == 'cdl_license' then
+        exports['um-idcard']:CreateMetaLicense(src, 'cdl_license')
+    elseif item == 'bike_license' then
+        exports['um-idcard']:CreateMetaLicense(src, 'bike_license')
+    elseif item == 'permit' then
+        exports['um-idcard']:CreateMetaLicense(src, 'permit')
+    elseif item == "weaponlicense" then
+        exports['um-idcard']:CreateMetaLicense(src, 'weaponlicense')
+    elseif item == "weaponlicense" then
+        exports['um-idcard']:CreateMetaLicense(src, 'lawyerpass')
     else
         return false -- DropPlayer(src, 'Attempted exploit abuse')
     end
-    if not exports['qb-inventory']:AddItem(source, item, 1, false, info, 'qb-cityhall:server:requestId') then return end
-    TriggerClientEvent('qb-inventory:client:ItemBox', src, QBCore.Shared.Items[item], 'add')
+    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], 'add')
 end)
 
 RegisterNetEvent('qb-cityhall:server:sendDriverTest', function(instructors)

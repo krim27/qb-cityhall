@@ -156,10 +156,17 @@ local function spawnPeds()
                 }
             end
             if opts then
-                exports['qb-target']:AddTargetEntity(ped, {
+                exports.interact:AddEntityInteraction({
+                    netId = ped,
+                    id = 'cityhall', -- needed for removing interactions
+                    distance = 2.0, -- optional
+                    interactDst = 1.0, -- optional
+                    ignoreLos = false, -- optional ignores line of sight
+                    --offset = vec3(0.0, 0.0, 0.0), -- optional
+                    --bone = 'engine', -- optional
                     options = { opts },
-                    distance = 2.0
                 })
+                
             end
         else
             local options = current.zoneOptions
